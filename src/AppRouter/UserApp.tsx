@@ -1,0 +1,35 @@
+import { Navigate, Route, Routes } from "react-router-dom";
+import UserLayout from "../UserApp/Components/UserLayout/UserLayout";
+import HomePage from "../UserApp/HomePage/HomePage";
+import DocumentDetail from "../UserApp/DocumentDetail/DocumentDetail";
+import ProfileLayout from "../UserApp/Components/ProfileLayout/ProfileLayout";
+import UserProfilePage from "../UserApp/UserProfilePage/UserProfilePage";
+import UserDocumentPage from "../UserApp/UserDocumentPage/UserDocumentPage";
+import UserDocumentDownloadPage from "../UserApp/UserDocumentDownloadPage/UserDocumentDownloadPage";
+import UserEPointPage from "../UserApp/UserEPointPage/UserEPointPage";
+import { useAppSelector } from "../redux/hooks";
+
+export default function UserApp(): JSX.Element {
+  const { isLogin } = useAppSelector((state) => state.login);
+  return (
+    <Routes>
+      <Route element={<UserLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="document/:id" element={<DocumentDetail />} />
+
+        <Route
+          path="user"
+          element={isLogin ? <ProfileLayout /> : <Navigate to={"/"} />}
+        >
+          <Route index element={<UserProfilePage />} />
+          <Route path="my-document" element={<UserDocumentPage />} />
+          <Route
+            path="download-document"
+            element={<UserDocumentDownloadPage />}
+          />
+          <Route path="my-epoint" element={<UserEPointPage />} />
+        </Route>
+      </Route>
+    </Routes>
+  );
+}
