@@ -16,6 +16,8 @@ export interface IDatatableProps {
   columns: GridColDef[];
   rows: any;
   showAction?: boolean;
+  showIdColum?: boolean;
+  showCheckbox?: boolean;
   handleView?: (id: string) => void;
   handleEdit?: (id: string) => void;
   handleDelete?: (id: string) => void;
@@ -54,10 +56,11 @@ export default function DataTable(props: IDatatableProps) {
         ),
       },
     ];
-    if (props.showAction) {
-      return defaultColum;
+    if (props.showAction === false) {
+      return [];
     }
-    return [];
+
+    return defaultColum;
   };
 
   const columns = props.columns.concat(renderDefaulColum());
@@ -122,9 +125,16 @@ export default function DataTable(props: IDatatableProps) {
               pageSize: 8,
             },
           },
+          columns: {
+            columnVisibilityModel: {
+              id: props.showIdColum === false ? props.showIdColum : true,
+            },
+          },
         }}
         rowHeight={60}
-        checkboxSelection
+        checkboxSelection={
+          props.showCheckbox === false ? props.showCheckbox : true
+        }
         disableRowSelectionOnClick
         editMode="cell"
         rowSelectionModel={selectionModel}

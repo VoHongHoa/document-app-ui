@@ -7,9 +7,6 @@ import React, {
   useState,
 } from "react";
 import { AppContext } from "../../AppContext";
-
-import { storage } from "../../firebase";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { CreateUser, ExceptionResponse, User } from "../../interface";
 import { UserService } from "../../Service";
 import { RoleEnum, StatusEnum } from "../../utils";

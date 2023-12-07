@@ -3,3 +3,4 @@ export * from "./SignIn";
 export * from "./User";
 export * from "./SignUp";
 export * from "./Exception";
+export * from "./InvoiceHistory";

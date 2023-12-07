@@ -3,13 +3,9 @@ import React, {
   useState,
   PropsWithChildren,
   useEffect,
-  ChangeEvent,
   useMemo,
 } from "react";
 import { AppContext } from "../../AppContext";
-
-import { storage } from "../../firebase";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import {
   CreateDocumentRequest,
   Document,

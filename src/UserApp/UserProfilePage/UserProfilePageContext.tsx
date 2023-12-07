@@ -5,11 +5,9 @@ import {
   useState,
   useEffect,
 } from "react";
-import { Document, ExceptionResponse, User } from "../../interface";
+import { ExceptionResponse, User } from "../../interface";
 import { AppContext } from "../../AppContext";
-import { useAppSelector } from "../../redux/hooks";
 import { UserService } from "../../Service";
-import { error } from "console";
 import { RoleEnum, StatusEnum } from "../../utils";
 interface IUserProfilePageContextProps {
   action: TAction;
@@ -57,12 +55,15 @@ const UserProfilePageContextProvider: React.FC<PropsWithChildren<{}>> = ({
   };
 
   const fetchUserData = () => {
+    handleOpenBackDrop();
     UserService.getMe()
       .then((response) => {
+        handleCloseBackDrop();
         setModel(response);
       })
       .catch((error: ExceptionResponse) => {
-        handleOpenNotify("error", error.message || "Upload unsuccess");
+        handleCloseBackDrop();
+        handleOpenNotify("error", error.message || "Lỗi server");
       });
   };
   useEffect(() => {
