@@ -5,7 +5,8 @@ import DataTable from "../Components/TableComponent/TableComponent";
 import { GridColDef } from "@mui/x-data-grid";
 import ModalUser from "./Components/ModalUser";
 import { StatusEnum } from "../../utils";
-
+import AddIcon from "@mui/icons-material/Add";
+import { Button } from "@mui/material";
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 100 },
   { field: "username", headerName: "Username", width: 150 },
@@ -50,18 +51,21 @@ export default function UserContent() {
   } = useContext(UserContext);
 
   return (
-    <div className="flex flex-col flex-wrap p-10">
+    <div className="flex flex-col flex-wrap p-10 w-full">
       <div className="flex flex-row flex-wrap justify-between">
         <span className="font-bold text-2xl"> Users </span>
-        <button
-          className="border p-2 items-center bg-blue-500 text-white"
+
+        <Button
+          variant="contained"
+          component="span"
+          startIcon={<AddIcon />}
           onClick={() => handleOpenModal("ADD")}
         >
           New User
-        </button>
+        </Button>
         <ModalUser />
       </div>
-      <div className=" flex flex-col gap-5">
+      <div className=" flex flex-col gap-5 w-full">
         <div></div>
         <DataTable
           columns={columns}

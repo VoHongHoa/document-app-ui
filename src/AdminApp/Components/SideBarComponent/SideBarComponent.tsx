@@ -14,8 +14,8 @@ export default function SideBarComponent(): JSX.Element {
     navigate(path);
   };
   return (
-    <div className="flex flex-col  h-screen overflow-y-scroll custom-scrollbar relative border-r-2 ">
-      <div className=" cursor-pointer h-14 sticky top-0 flex flex-row items-center justify-center">
+    <div className="sticky top-0 flex flex-col h-screen overflow-y-scroll custom-scrollbar border-r-2 bg-gray-100">
+      <div className=" cursor-pointer h-14 flex flex-row items-center justify-center">
         <span className="font-bold italic text-xl">ADMIN DASHBOARD</span>
       </div>
       <Divider color="white" />

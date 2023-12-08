@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { AppContext } from "../../../AppContext";
 import { DocumentService } from "../../../Service";
@@ -13,22 +13,25 @@ interface ICollectionSectionProps {
 export default function CollectionSection(props: ICollectionSectionProps) {
   const navigate = useNavigate();
   const [data, setData] = useState<Omit<Document, "url_download">[]>([]);
-  const { handleOpenNotify } = useContext(AppContext);
-  const fetchData = useCallback(() => {
+  const { handleOpenNotify, handleOpenBackDrop, handleCloseBackDrop } =
+    useContext(AppContext);
+  const fetchData = () => {
+    handleOpenBackDrop();
     DocumentService.getDocumentHomePage()
       .then((response) => {
+        handleCloseBackDrop();
         setData(response);
       })
       .catch((error: ExceptionResponse) => {
-        handleOpenNotify("error", error.message || "Upload unsuccess");
+        handleOpenNotify("error", error.message || "Lỗi server");
       });
-  }, [handleOpenNotify]);
+  };
   const handleViewMore = () => {
     navigate("/document-filter");
   };
   useEffect(() => {
     return fetchData();
-  }, [fetchData]);
+  }, []);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-row flex-wrap justify-between">

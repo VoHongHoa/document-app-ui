@@ -7,7 +7,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import UserNavigation from "../../../UserApp/Components/HeaderComponent/Components/UserNavigation";
 export default function AdminHeaderComponent() {
   return (
-    <div className="h-14 flex flex-row flex-wrap items-center justify-between p-2">
+    <div className="h-14 flex flex-row flex-wrap items-center justify-between p-2 bg-gray-100">
       <div className="flex flex-row flex-wrap items-center gap-6">
         <MenuIcon fontSize="large" />
         <div className="relative">

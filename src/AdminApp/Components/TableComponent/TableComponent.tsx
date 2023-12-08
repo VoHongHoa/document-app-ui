@@ -114,7 +114,7 @@ export default function DataTable(props: IDatatableProps) {
   };
 
   return (
-    <div className="h-[600px] w-[100%] custom-scrollbar ">
+    <div className="w-[100%] custom-scrollbar ">
       <StyledDataGrid
         className="custom-scrollbar"
         rows={props.rows}

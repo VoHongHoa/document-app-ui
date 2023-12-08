@@ -1,7 +1,10 @@
-import React from "react";
+import HomeDashboardContent from "./HomeDashboardContent";
+import { HomeDashboardContextProvider } from "./HomeDashboardContext";
 
-const HomeDashboard = () => {
-  return <div>HomeDashboard</div>;
-};
-
-export default HomeDashboard;
+export default function HomeDashboard() {
+  return (
+    <HomeDashboardContextProvider>
+      <HomeDashboardContent />
+    </HomeDashboardContextProvider>
+  );
+}

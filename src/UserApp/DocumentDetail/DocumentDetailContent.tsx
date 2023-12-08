@@ -3,11 +3,12 @@ import { DocumentDetailContext } from "./DocumentDetailContext";
 import ViewDocumentComponent from "../Components/ViewDocumentComponent/ViewDocumentComponent";
 import { formatDate } from "../../utils/format";
 import Banner from "../HomePage/Components/Banner";
-import OtherDocument from "./Components/OtherDocument";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Button } from "@mui/material";
 import CollectionSection from "../HomePage/Components/CollectionSection";
 import DocumentWithManyDownLoad from "../HomePage/Components/DocumentWithManyDownLoad";
+import FlagIcon from "@mui/icons-material/Flag";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 export default function DocumentDetailContent() {
   const { detaiDocument, hadnleBuyDocumnent } = useContext(
     DocumentDetailContext
@@ -28,18 +29,38 @@ export default function DocumentDetailContent() {
                 <span>Số trang: {detaiDocument.total_page}</span>
               </div>
               <div className="flex flex-row flex-wrap gap-5">
-                <button className="p-2 border">Yêu thích</button>
-                <button className="p-2 border bg-red-500 text-white">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="large"
+                  startIcon={<FavoriteIcon />}
+                  onClick={hadnleBuyDocumnent}
+                >
+                  Yêu thích
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  startIcon={<ShoppingBasketIcon />}
+                  onClick={hadnleBuyDocumnent}
+                >
+                  Mua ngay
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="large"
+                  startIcon={<FlagIcon />}
+                  onClick={hadnleBuyDocumnent}
+                >
                   Báo cáo
-                </button>
+                </Button>
               </div>
             </div>
             <div className="flex flex-rowf flex-wrap gap-5 justify-center">
               <div className="flex flex-wrap flex-col gap-1">
-                <span className="text-red-500">
-                  {" "}
-                  {detaiDocument.total_view}
-                </span>
+                <span className="text-red-500">{detaiDocument.total_view}</span>
                 <span>Lượt xem</span>
               </div>
               <div className="flex flex-wrap flex-col gap-1 justify-center">
@@ -58,10 +79,10 @@ export default function DocumentDetailContent() {
           </div>
 
           <div className="flex flex-row flex-wrap gap-5">
-            {/* <button className="p-2 border">Thêm vào giỏ</button> */}
             <Button
               variant="contained"
               color="primary"
+              size="large"
               startIcon={<ShoppingBasketIcon />}
               onClick={hadnleBuyDocumnent}
             >

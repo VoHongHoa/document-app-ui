@@ -1,14 +1,13 @@
 import React, {
   createContext,
   PropsWithChildren,
-  useEffect,
   useState,
+  useCallback,
 } from "react";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useNavigate } from "react-router-dom";
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
   ref
@@ -49,20 +48,19 @@ const AppContextProvider: React.FC<PropsWithChildren<{}>> = ({ children }) => {
     signInModal: false,
   });
   const [notifyStatus, setNotifySatatus] = useState<TStatusNotify>("info");
-  const navigate = useNavigate();
-
   const handleOpenNotify = (status: TStatusNotify, message: string) => {
     setMessage(message);
     setNotifySatatus(status);
     setOpen(true);
   };
 
-  const handleOpenBackDrop = () => {
+  const handleOpenBackDrop = useCallback(() => {
     setOpenBackDrop(true);
-  };
-  const handleCloseBackDrop = () => {
+  }, []);
+
+  const handleCloseBackDrop = useCallback(() => {
     setOpenBackDrop(false);
-  };
+  }, []);
   const handleCloseNotify = (
     event?: React.SyntheticEvent | Event,
     reason?: string

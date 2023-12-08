@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { AppContext } from "../../../AppContext";
 import { DocumentService } from "../../../Service";
@@ -15,22 +15,25 @@ export default function DocumentWithManyView(
 ) {
   const navigate = useNavigate();
   const [data, setData] = useState<Omit<Document, "url_download">[]>([]);
-  const { handleOpenNotify } = useContext(AppContext);
-  const fetchData = useCallback(() => {
+  const { handleOpenNotify, handleCloseBackDrop, handleOpenBackDrop } =
+    useContext(AppContext);
+  const fetchData = () => {
+    handleOpenBackDrop();
     DocumentService.getDocumentWithManyView()
       .then((response) => {
+        handleCloseBackDrop();
         setData(response);
       })
       .catch((error: ExceptionResponse) => {
         handleOpenNotify("error", error.message || "Lỗi server");
       });
-  }, [handleOpenNotify]);
+  };
   const handleViewMore = () => {
     navigate("/document-filter");
   };
   useEffect(() => {
     return fetchData();
-  }, [fetchData]);
+  }, []);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-row flex-wrap justify-between">
