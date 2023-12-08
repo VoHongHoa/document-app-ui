@@ -7,6 +7,54 @@ import {
   UpdateDocumentRequest,
 } from "../interface";
 
+export const getDocumentWithManyView = async (): Promise<
+  Omit<Document, "url_download">[]
+> => {
+  try {
+    const response: AxiosResponse<Omit<Document, "url_download">[]> =
+      await axios.get<Omit<Document, "url_download">[]>(
+        "document/homepage/document-with-many-view"
+      );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      const axiosError = error as AxiosError<ExceptionResponse>;
+      if (axiosError.response) {
+        throw axiosError.response.data;
+      }
+    }
+    throw {
+      message: "Internal server error",
+      error: "unkown",
+      status_code: 500,
+    };
+  }
+};
+
+export const getDocumentWithManyDownload = async (): Promise<
+  Omit<Document, "url_download">[]
+> => {
+  try {
+    const response: AxiosResponse<Omit<Document, "url_download">[]> =
+      await axios.get<Omit<Document, "url_download">[]>(
+        "document/homepage/document-with-many-download"
+      );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      const axiosError = error as AxiosError<ExceptionResponse>;
+      if (axiosError.response) {
+        throw axiosError.response.data;
+      }
+    }
+    throw {
+      message: "Internal server error",
+      error: "unkown",
+      status_code: 500,
+    };
+  }
+};
+
 export const getDocumentHomePage = async (): Promise<
   Omit<Document, "url_download">[]
 > => {

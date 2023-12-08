@@ -5,7 +5,7 @@ export default function FooterComponent() {
     <footer className="bg-white dark:bg-gray-900">
       <div className="mx-auto w-full max-w-screen-xl">
         <div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0 bg-cyan-800 h-10 p-2 max-sm:h-40">
+          <div className="mb-6 md:mb-0 bg-cyan-800 h-10 p-2 max-sm:h-14 max-sm:w-36 max-sm:m-auto max-sm:mb-7">
             <img
               src="https://tailieu.vn/static/b2013az/templates/version1/default/images/tailieu.png"
               className="me-3 w-full h-full cursor-pointer"

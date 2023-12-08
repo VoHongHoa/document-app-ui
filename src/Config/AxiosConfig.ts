@@ -2,13 +2,17 @@ import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 
 const instance: AxiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "http://localhost:8080/api",
+  timeout: 10000,
 });
 //axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
-instance.interceptors.response.use((response) => {
-  return response;
-}, function (error) {
-  return Promise.reject(error);
-});
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 instance.interceptors.request.use(function (
   config: InternalAxiosRequestConfig<any>
 ) {

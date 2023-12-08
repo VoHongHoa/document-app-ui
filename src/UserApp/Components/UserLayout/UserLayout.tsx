@@ -12,11 +12,11 @@ const UserLayout: React.FC = () => {
         <NotificationSystemComponent />
       </div>
       <div className="max-sm:w-[90%] w-[80%] m-[auto] ">
-        <main className="mb-5">
+        <main className="mb-7">
           <Outlet />
         </main>
       </div>
-      <div className="w-full h-2 bg-blue-500 mb-1"></div>
+      <div className="w-full h-2 bg-blue-500 mb-7"></div>
       <div className="max-sm:w-[90%] w-[80%] m-[auto]">
         <FooterComponent />
       </div>

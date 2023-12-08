@@ -1,10 +1,9 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
 import ProfileSideBarComponent from "./Components/ProfileSideBarComponent";
 import AvartarComponent from "./Components/AvartarComponent";
 import useWindowSize from "../../../CustomeHook/useWindowSize";
 
-const ProfileLayout: React.FC = () => {
+export default function ProfileLayout() {
   const { width } = useWindowSize();
   return (
     <main className="mb-5">
@@ -19,6 +18,4 @@ const ProfileLayout: React.FC = () => {
       </div>
     </main>
   );
-};
-
-export default ProfileLayout;
+}
