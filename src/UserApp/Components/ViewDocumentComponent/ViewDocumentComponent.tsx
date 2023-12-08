@@ -35,7 +35,12 @@ export default function ViewDocumentComponent(props: IPropsViewDocument) {
     },
   });
   return (
-    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+    <Worker
+      workerUrl={
+        process.env.REACT_APP_WORKER_PDF ||
+        "https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js"
+      }
+    >
       <Viewer
         fileUrl={props.url}
         plugins={[defaultLayoutPluginInstance, toolbarPluginInstance]}
