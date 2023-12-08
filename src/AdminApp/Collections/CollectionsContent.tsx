@@ -1,36 +1,18 @@
-import React, { useContext } from "react";
-import { DocumentsContext } from "./DocumentContext";
+import { useContext } from "react";
+import { Avatar, Button } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import DataTable from "../Components/TableComponent/TableComponent";
 import { GridColDef } from "@mui/x-data-grid";
 import { StatusEnum } from "../../utils";
-import ModalDocument from "./Components/ModalDocument";
-import Button from "@mui/material/Button";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { Avatar } from "@mui/material";
-import DownloadIcon from "@mui/icons-material/Download";
+import { CollectionsContext } from "./CollectionsContext";
+import ModalCollection from "./Components/ModalCollection";
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 150 },
-  { field: "title", headerName: "Title", width: 150 },
-  { field: "total_page", headerName: "Total Page", width: 120 },
-  { field: "price", headerName: "Price", width: 120 },
-  { field: "total_view", headerName: "Total View", width: 120 },
-  { field: "total_download", headerName: "Total Download", width: 120 },
-  {
-    field: "url_download",
-    headerName: "Download",
-    width: 100,
-    renderCell(params) {
-      return (
-        <a className="" href={params.value} target="_blank">
-          <DownloadIcon />
-        </a>
-      );
-    },
-  },
+  { field: "id", headerName: "ID", width: 250 },
+  { field: "title", headerName: "Title", width: 250 },
   {
     field: "status",
     headerName: "Status",
-    width: 150,
+    width: 250,
     renderCell(params) {
       return (
         <div
@@ -48,34 +30,34 @@ const columns: GridColDef[] = [
   {
     field: "theme_image",
     headerName: "Theme Image",
-    width: 150,
+    width: 250,
     renderCell(params) {
       return <Avatar src={params.value} />;
     },
   },
 ];
-export default function DocumentsContent() {
+export default function CollectionsContent() {
   const {
     handleOpenModal,
     handleDelete,
     handleEdit,
     handleView,
     processDataTable,
-  } = useContext(DocumentsContext);
+  } = useContext(CollectionsContext);
   return (
     <div className="flex flex-col flex-wrap p-10">
       <div className="flex flex-row flex-wrap justify-between">
-        <span className="font-bold text-2xl"> Documents </span>
+        <span className="font-bold text-2xl"> Collections </span>
 
         <Button
           variant="contained"
           component="span"
-          startIcon={<CloudUploadIcon />}
+          startIcon={<AddIcon />}
           onClick={() => handleOpenModal("ADD")}
         >
-          Upload Document
+          New Collection
         </Button>
-        <ModalDocument />
+        <ModalCollection />
       </div>
 
       <div className=" flex flex-col gap-5 w-full">

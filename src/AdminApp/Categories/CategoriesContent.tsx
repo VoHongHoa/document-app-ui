@@ -1,36 +1,18 @@
-import React, { useContext } from "react";
-import { DocumentsContext } from "./DocumentContext";
+import { useContext } from "react";
+import { CategoriesContext } from "./CategoriesContext";
+import { Avatar, Button } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import DataTable from "../Components/TableComponent/TableComponent";
 import { GridColDef } from "@mui/x-data-grid";
 import { StatusEnum } from "../../utils";
-import ModalDocument from "./Components/ModalDocument";
-import Button from "@mui/material/Button";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { Avatar } from "@mui/material";
-import DownloadIcon from "@mui/icons-material/Download";
+import ModalCategory from "./Components/ModalCategory";
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 150 },
-  { field: "title", headerName: "Title", width: 150 },
-  { field: "total_page", headerName: "Total Page", width: 120 },
-  { field: "price", headerName: "Price", width: 120 },
-  { field: "total_view", headerName: "Total View", width: 120 },
-  { field: "total_download", headerName: "Total Download", width: 120 },
-  {
-    field: "url_download",
-    headerName: "Download",
-    width: 100,
-    renderCell(params) {
-      return (
-        <a className="" href={params.value} target="_blank">
-          <DownloadIcon />
-        </a>
-      );
-    },
-  },
+  { field: "id", headerName: "ID", width: 250 },
+  { field: "title", headerName: "Title", width: 250 },
   {
     field: "status",
     headerName: "Status",
-    width: 150,
+    width: 250,
     renderCell(params) {
       return (
         <div
@@ -48,20 +30,20 @@ const columns: GridColDef[] = [
   {
     field: "theme_image",
     headerName: "Theme Image",
-    width: 150,
+    width: 250,
     renderCell(params) {
       return <Avatar src={params.value} />;
     },
   },
 ];
-export default function DocumentsContent() {
+export default function CategoriesContent() {
   const {
     handleOpenModal,
     handleDelete,
     handleEdit,
     handleView,
     processDataTable,
-  } = useContext(DocumentsContext);
+  } = useContext(CategoriesContext);
   return (
     <div className="flex flex-col flex-wrap p-10">
       <div className="flex flex-row flex-wrap justify-between">
@@ -70,12 +52,12 @@ export default function DocumentsContent() {
         <Button
           variant="contained"
           component="span"
-          startIcon={<CloudUploadIcon />}
+          startIcon={<AddIcon />}
           onClick={() => handleOpenModal("ADD")}
         >
-          Upload Document
+          New Category
         </Button>
-        <ModalDocument />
+        <ModalCategory />
       </div>
 
       <div className=" flex flex-col gap-5 w-full">

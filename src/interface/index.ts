@@ -5,3 +5,5 @@ export * from "./SignUp";
 export * from "./Exception";
 export * from "./InvoiceHistory";
 export * from "./Dashboard";
+export * from "./Category";
+export * from "./Collection";

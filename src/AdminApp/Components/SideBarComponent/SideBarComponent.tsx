@@ -24,7 +24,7 @@ export default function SideBarComponent(): JSX.Element {
           return (
             <div
               key={index + "sidebar"}
-              className={`flex flex-row flex-wrap gap-5 items-center cursor-pointer p-4 hover:bg-blue-500 ${
+              className={`flex flex-row flex-wrap gap-5 items-center cursor-pointer p-4 hover:bg-blue-500 hover:text-white ${
                 activeSidebar === item.path && "bg-blue-500 text-white"
               }`}
               onClick={() => handleOnchangePage(item.path)}
