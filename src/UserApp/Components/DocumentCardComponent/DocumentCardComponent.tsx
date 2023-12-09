@@ -24,10 +24,11 @@ export default function DocumentCardComponent(props: IDocumentCardComponent) {
       </div>
 
       <div
-        className="bg-blue-400 text-white font-bold hover:bg-blue-300 cursor-pointer p-1 text-sm max-h-48"
+        className="bg-blue-400 text-white font-bold hover:bg-blue-300 cursor-pointer p-1
+        h-12 text-sm flex flex-row items-center"
         onClick={handleViewDetail}
       >
-        <p>{props.data.title}</p>
+        <h2 className="truncate">{props.data.title}</h2>
       </div>
 
       <div className="flex flex-row flex-wrap justify-between p-1">

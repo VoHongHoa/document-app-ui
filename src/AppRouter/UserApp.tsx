@@ -9,7 +9,7 @@ import UserDocumentDownloadPage from "../UserApp/UserDocumentDownloadPage/UserDo
 import UserEPointPage from "../UserApp/UserEPointPage/UserEPointPage";
 import { useAppSelector } from "../redux/hooks";
 import DocumentFilter from "../UserApp/DocumentFilter/DocumentFilter";
-import DocumentFilterLayout from "../UserApp/Components/DocumentFilterLayout/DocumentFilterLayout";
+import DocumentByCollection from "../UserApp/DocumentByCollection/DocumentByCollection";
 
 export default function UserApp(): JSX.Element {
   const { isLogin } = useAppSelector((state) => state.login);
@@ -32,9 +32,11 @@ export default function UserApp(): JSX.Element {
           <Route path="my-epoint" element={<UserEPointPage />} />
         </Route>
 
-        <Route path="document-filter" element={<DocumentFilterLayout />}>
-          <Route index element={<DocumentFilter />} />
-        </Route>
+        <Route path="document-filter" element={<DocumentFilter />} />
+        <Route
+          path="document-collection/:id"
+          element={<DocumentByCollection />}
+        />
       </Route>
     </Routes>
   );

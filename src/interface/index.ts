@@ -7,3 +7,4 @@ export * from "./InvoiceHistory";
 export * from "./Dashboard";
 export * from "./Category";
 export * from "./Collection";
+export * from "./FilterDocument";

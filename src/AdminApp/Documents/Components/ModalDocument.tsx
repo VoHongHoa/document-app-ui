@@ -13,6 +13,9 @@ import Tab from "@mui/material/Tab";
 import TabComponent from "../../Components/TabComponent/TabComponent";
 import { a11yProps } from "../../../utils/format";
 import FileUploadComponent from "../../Components/FileUploadComponent/FileUploadComponent";
+import CategorySelect from "../../Categories/Components/CategorySelect";
+import { StatusEnum } from "../../../utils";
+import CollectionSelect from "../../Collections/Components/CollectionSelect";
 
 export default function ModalDocument() {
   const {
@@ -34,7 +37,7 @@ export default function ModalDocument() {
     <Dialog
       aria-labelledby="customized-dialog-title"
       open={isOpenModal}
-      maxWidth="sm"
+      maxWidth="md"
       PaperProps={{
         style: {
           width: "100%",
@@ -117,6 +120,14 @@ export default function ModalDocument() {
                 <StatusSelectComponent
                   key={"status_select"}
                   value={model.status}
+                  onchange={handleOnchangeInput}
+                />
+                <CategorySelect
+                  value={model.category_id || ""}
+                  onchange={handleOnchangeInput}
+                />
+                <CollectionSelect
+                  value={model.collection_id || ""}
                   onchange={handleOnchangeInput}
                 />
               </div>

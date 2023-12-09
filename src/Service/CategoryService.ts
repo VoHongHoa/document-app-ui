@@ -7,6 +7,27 @@ import {
   UpdateCategoryRequest,
 } from "../interface";
 
+export const getDataSelect = async (status: string): Promise<Category[]> => {
+  try {
+    const response: AxiosResponse<Category[]> = await axios.get<Category[]>(
+      `category/filter/select?status=${status}`
+    );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      const axiosError = error as AxiosError<ExceptionResponse>;
+      if (axiosError.response) {
+        throw axiosError.response.data;
+      }
+    }
+    throw {
+      message: "Internal server error",
+      error: "unkown",
+      status_code: 500,
+    };
+  }
+};
+
 export const create = async (
   data: CreateCategoryRequest
 ): Promise<Category> => {

@@ -10,6 +10,8 @@ export interface Document {
   description: string;
   status: string;
 
+  category_id?: string;
+  collection_id?: string;
   createdAt?: Date;
   updatedAt?: Date;
   createdBy?: string;
@@ -25,6 +27,8 @@ export interface DocumentForUser {
   total_view: number;
   total_download: number;
   description: string;
+  category_id?: string;
+  collection_id?: string;
   status: string;
 
   createdAt: Date;
@@ -39,6 +43,8 @@ export interface CreateDocumentRequest {
   theme_image: string;
   price: number;
   url_download: string;
+  category_id?: string;
+  collection_id?: string;
   description: string;
   status: string;
 }
@@ -49,5 +55,7 @@ export interface UpdateDocumentRequest {
   theme_image: string;
   price: number;
   description: string;
+  category_id?: string;
+  collection_id?: string;
   status: string;
 }

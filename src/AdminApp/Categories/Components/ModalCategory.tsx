@@ -34,7 +34,7 @@ export default function ModalCategory() {
     <Dialog
       aria-labelledby="customized-dialog-title"
       open={isOpenModal}
-      maxWidth="sm"
+      maxWidth="md"
       PaperProps={{
         style: {
           width: "100%",

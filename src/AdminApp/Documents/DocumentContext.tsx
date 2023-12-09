@@ -37,6 +37,8 @@ type TKeyInput =
   | "theme_image"
   | "price"
   | "url_download"
+  | "category_id"
+  | "collection_id"
   | "description"
   | "status";
 export type TAction = "LIST" | "EDIT" | "ADD" | "VIEW" | "DELETE";

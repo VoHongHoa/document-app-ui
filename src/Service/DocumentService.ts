@@ -7,6 +7,55 @@ import {
   UpdateDocumentRequest,
 } from "../interface";
 
+export const getDocumentByCollection = async (
+  id: string
+): Promise<Omit<Document, "url_download">[]> => {
+  try {
+    const response: AxiosResponse<Omit<Document, "url_download">[]> =
+      await axios.get<Omit<Document, "url_download">[]>(
+        `document/get-document-by-collection/${id}`
+      );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      const axiosError = error as AxiosError<ExceptionResponse>;
+      if (axiosError.response) {
+        throw axiosError.response.data;
+      }
+    }
+    throw {
+      message: "Internal server error",
+      error: "unkown",
+      status_code: 500,
+    };
+  }
+};
+
+export const filterDocument = async (
+  searchModel: any
+): Promise<Omit<Document, "url_download">[]> => {
+  try {
+    const response: AxiosResponse<Omit<Document, "url_download">[]> =
+      await axios.post<Omit<Document, "url_download">[]>(
+        "document/homepage/filter",
+        searchModel
+      );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      const axiosError = error as AxiosError<ExceptionResponse>;
+      if (axiosError.response) {
+        throw axiosError.response.data;
+      }
+    }
+    throw {
+      message: "Internal server error",
+      error: "unkown",
+      status_code: 500,
+    };
+  }
+};
+
 export const getDocumentWithManyView = async (): Promise<
   Omit<Document, "url_download">[]
 > => {
