@@ -60,7 +60,7 @@ export default function SignInModal() {
   };
   const handleGoogleLogin = async () => {
     try {
-      window.location.href = "http://localhost:3030/auth/google";
+      window.location.href = `${process.env.REACT_APP_API_URL}auth/google"`;
     } catch (error) {
       console.error("Error during Google login:", error);
     }

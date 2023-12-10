@@ -10,6 +10,13 @@ export default function Authentication() {
     useContext(HomePageContext);
   const { handleOpenMadal } = useContext(AppContext);
   const { isLogin, user } = useAppSelector((state) => state.login);
+  const handleGoogleLogin = async () => {
+    try {
+      window.location.href = `${process.env.REACT_APP_API_URL}auth/google"`;
+    } catch (error) {
+      console.error("Error during Google login:", error);
+    }
+  };
   const renderContent = () => {
     if (!isLogin) {
       return (
@@ -17,8 +24,11 @@ export default function Authentication() {
           <p className="text-lg text-center text-blue-600 font-bold">
             Sign Up Account
           </p>
-          <button className="border p-3 bg-blue-600 text-white">
-            Sign up with Facebook
+          <button
+            className="border p-3 bg-blue-600 text-white"
+            onClick={handleGoogleLogin}
+          >
+            Sign up with Google
           </button>
           <Divider>
             <span className="text-center">Or</span>
