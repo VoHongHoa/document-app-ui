@@ -8,3 +8,4 @@ export * from "./Dashboard";
 export * from "./Category";
 export * from "./Collection";
 export * from "./FilterDocument";
+export * from "./Comment";

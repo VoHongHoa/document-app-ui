@@ -76,7 +76,7 @@ export default function Authentication() {
         <div className="relative">
           <Avatar
             alt="Remy Sharp"
-            src="/static/images/avatar/1.jpg"
+            src={user?.avatar}
             className="cursor-pointer"
             sx={{ width: "200px", height: "200px", zIndex: "-50" }}
           />
