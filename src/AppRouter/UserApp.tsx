@@ -10,6 +10,7 @@ import UserEPointPage from "../UserApp/UserEPointPage/UserEPointPage";
 import { useAppSelector } from "../redux/hooks";
 import DocumentFilter from "../UserApp/DocumentFilter/DocumentFilter";
 import DocumentByCollection from "../UserApp/DocumentByCollection/DocumentByCollection";
+import SignInCallback from "../UserApp/Components/HeaderComponent/Components/SignInCallback";
 
 export default function UserApp(): JSX.Element {
   const { isLogin } = useAppSelector((state) => state.login);
@@ -17,8 +18,11 @@ export default function UserApp(): JSX.Element {
     <Routes>
       <Route element={<UserLayout />}>
         <Route index element={<HomePage />} />
+        <Route
+          path="google-auth"
+          element={isLogin ? <Navigate to={"/"} /> : <SignInCallback />}
+        />
         <Route path="document/:id" element={<DocumentDetail />} />
-
         <Route
           path="user"
           element={isLogin ? <ProfileLayout /> : <Navigate to={"/"} />}
@@ -31,7 +35,6 @@ export default function UserApp(): JSX.Element {
           />
           <Route path="my-epoint" element={<UserEPointPage />} />
         </Route>
-
         <Route path="document-filter" element={<DocumentFilter />} />
         <Route
           path="document-collection/:id"

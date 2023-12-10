@@ -14,12 +14,14 @@ export default function UserNavigation() {
     <div className="flex flex-row items-center gap-2">
       <Avatar
         alt="Remy Sharp"
-        src="/static/images/avatar/1.jpg"
+        src={user?.avatar}
         onClick={(e) => setAnchorEl(e.currentTarget)}
         className="cursor-pointer relative"
         id="avatar"
       />
-      <span className="font-bold">{user?.username || "Người dùng"}</span>
+      <span className="font-bold">
+        {user?.display_name || "Tên Người dùng"}
+      </span>
 
       <Popover
         open={Boolean(anchorEl)}

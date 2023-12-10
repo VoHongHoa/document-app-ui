@@ -10,6 +10,7 @@ import { AppContext } from "../../AppContext";
 import { useParams } from "react-router-dom";
 import { DocumentService, InvoiceHistoryService } from "../../Service";
 import { StatusEnum } from "../../utils";
+import { useAppSelector } from "../../redux/hooks";
 
 interface IDocumentDetailContextProps {
   detaiDocument: Document;
@@ -25,6 +26,7 @@ const DocumentDetailContextProvider: React.FC<PropsWithChildren<{}>> = ({
   const { handleOpenNotify, handleOpenBackDrop, handleCloseBackDrop } =
     useContext(AppContext);
   const { id } = useParams();
+  const { isLogin } = useAppSelector((state) => state.login);
   const [detaiDocument, setDetailDocument] = useState<Document>({
     _id: "",
     description: "",
@@ -54,22 +56,26 @@ const DocumentDetailContextProvider: React.FC<PropsWithChildren<{}>> = ({
   };
 
   const hadnleBuyDocumnent = () => {
-    handleOpenBackDrop();
-    if (id) {
-      InvoiceHistoryService.create(id)
-        .then((response) => {
-          handleCloseBackDrop();
-          if (response) {
+    if (isLogin) {
+      handleOpenBackDrop();
+      if (id) {
+        InvoiceHistoryService.create(id)
+          .then((response) => {
             handleCloseBackDrop();
-            handleOpenNotify("success", "Mua tài liệu thành công");
-          }
-        })
-        .catch((error: ExceptionResponse) => {
-          handleCloseBackDrop();
-          handleOpenNotify("error", error.message || "Lỗi server");
-        });
+            if (response) {
+              handleCloseBackDrop();
+              handleOpenNotify("success", "Mua tài liệu thành công");
+            }
+          })
+          .catch((error: ExceptionResponse) => {
+            handleCloseBackDrop();
+            handleOpenNotify("error", error.message || "Lỗi server");
+          });
+      } else {
+        handleOpenNotify("error", "Lỗi server");
+      }
     } else {
-      handleOpenNotify("error", "Lỗi server");
+      handleOpenNotify("warning", "Vui lòng đăng nhập để tiếp tục");
     }
   };
 

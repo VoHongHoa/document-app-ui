@@ -14,14 +14,6 @@ import {
   SignInReponse,
   SignInRequest,
 } from "../../../../interface";
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
 type TKeyInput = "username" | "password";
 
 export default function SignInModal() {
@@ -66,10 +58,18 @@ export default function SignInModal() {
       [key]: value,
     });
   };
+  const handleGoogleLogin = async () => {
+    try {
+      window.location.href = "http://localhost:3030/auth/google";
+    } catch (error) {
+      console.error("Error during Google login:", error);
+    }
+  };
 
   return (
-    <BootstrapDialog
+    <Dialog
       aria-labelledby="customized-dialog-title"
+      maxWidth="sm"
       open={openModal.signInModal}
     >
       <DialogTitle
@@ -92,8 +92,11 @@ export default function SignInModal() {
       </IconButton>
       <DialogContent dividers>
         <div className="w-full flex flex-col gap-4">
-          <button className="border bg-blue-500 text-white p-3">
-            Sign in with Faccebook
+          <button
+            className="border bg-blue-500 text-white p-3"
+            onClick={handleGoogleLogin}
+          >
+            Sign in with Google
           </button>
           <div className="flex flex-row items-center w-full">
             <div className="h-[1px] w-[45%] bg-gray-400"></div>
@@ -129,6 +132,6 @@ export default function SignInModal() {
           </span>
         </div>
       </DialogContent>
-    </BootstrapDialog>
+    </Dialog>
   );
 }

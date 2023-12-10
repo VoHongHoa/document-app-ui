@@ -72,8 +72,10 @@ export default function Authentication() {
           />
         </div>
 
-        <span className="font-bold">{user?.username || "Người dùng"}</span>
         <span className="font-bold">{user?.email || "Email Người dùng"}</span>
+        <span className="font-bold">
+          {user?.display_name || "Tên Người dùng"}
+        </span>
       </div>
     );
   };
