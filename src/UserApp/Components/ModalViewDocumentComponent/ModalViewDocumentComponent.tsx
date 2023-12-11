@@ -2,6 +2,7 @@ import { Dialog, DialogTitle, DialogContent } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import ViewDocumentComponent from "../ViewDocumentComponent/ViewDocumentComponent";
+import useWindowSize from "../../../CustomeHook/useWindowSize";
 interface IModalViewDocumentComponentProps {
   isOpenModal: boolean;
   handleCloseModal: () => void;
@@ -10,11 +11,12 @@ interface IModalViewDocumentComponentProps {
 export default function ModalViewDocumentComponent(
   props: IModalViewDocumentComponentProps
 ) {
-  console.log(props.url);
+  const { width } = useWindowSize();
   return (
     <Dialog
       aria-labelledby="customized-dialog-title"
       open={props.isOpenModal}
+      fullScreen={width > 1023 ? false : true}
       maxWidth="md"
       PaperProps={{
         style: {

@@ -20,6 +20,8 @@ import FileUploadComponent from "../../../../AdminApp/Components/FileUploadCompo
 import DialogActions from "@mui/material/DialogActions";
 import { DocumentService } from "../../../../Service";
 import { AppContext } from "../../../../AppContext";
+import useWindowSize from "../../../../CustomeHook/useWindowSize";
+import { useAppSelector } from "../../../../redux/hooks";
 
 type TAction = "ADD" | "EDIT" | "DELETE";
 type TKeyInput =
@@ -45,6 +47,8 @@ export default function () {
     url_download: "",
     status: StatusEnum.Active,
   });
+  const { isLogin } = useAppSelector((state) => state.login);
+  const { width } = useWindowSize();
   const [action, setAction] = useState<TAction>("ADD");
   const [value, setValue] = useState(0);
 
@@ -52,8 +56,12 @@ export default function () {
     setValue(newValue);
   };
   const handleOpenModal = (action: TAction) => {
-    setAction("ADD");
-    setOpenModal(true);
+    if (isLogin) {
+      setAction("ADD");
+      setOpenModal(true);
+    } else {
+      handleOpenNotify("warning", "Vui lòng đăng nhập để tiếp tục");
+    }
   };
   const handleCloseModal = () => {
     setAction("ADD");
@@ -105,6 +113,7 @@ export default function () {
       <Dialog
         aria-labelledby="customized-dialog-title"
         maxWidth="md"
+        fullScreen={width > 1024 ? false : true}
         open={openModal}
         PaperProps={{
           style: {
@@ -138,8 +147,8 @@ export default function () {
                 onChange={handleChange}
                 aria-label="basic tabs example"
               >
-                <Tab label="Thông tin chung" {...a11yProps(0)} />
-                <Tab label="Thông tin thêm" {...a11yProps(1)} />
+                <Tab label="Thông tin" {...a11yProps(0)} />
+                <Tab label="Mô tả" {...a11yProps(1)} />
                 <Tab label="Upload file" {...a11yProps(2)} />
               </Tabs>
             </Box>
@@ -180,7 +189,7 @@ export default function () {
                   onChange={(e) => handleOnchangeInput("price", e.target.value)}
                 />
 
-                <div className="flex flex-row justify-between gap-10">
+                <div className="flex flex-col lg:flex-row justify-between gap-10">
                   <StatusSelectComponent
                     key={"status_select"}
                     value={model.status}

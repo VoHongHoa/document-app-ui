@@ -3,10 +3,11 @@ import { useState } from "react";
 import { useAppSelector } from "../../../../redux/hooks";
 import { Popover } from "@mui/material";
 import ProfileSideBarComponent from "../../ProfileLayout/Components/ProfileSideBarComponent";
+import useWindowSize from "../../../../CustomeHook/useWindowSize";
 export default function UserNavigation() {
   const { user } = useAppSelector((state) => state.login);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
+  const { width } = useWindowSize();
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -19,9 +20,11 @@ export default function UserNavigation() {
         className="cursor-pointer relative"
         id="avatar"
       />
-      <span className="font-bold">
-        {user?.display_name || "Tên Người dùng"}
-      </span>
+      {width >= 1023 && (
+        <span className="font-bold">
+          {user?.display_name || "Tên Người dùng"}
+        </span>
+      )}
 
       <Popover
         open={Boolean(anchorEl)}
