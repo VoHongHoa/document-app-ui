@@ -38,7 +38,7 @@ export default function DocumentCardComponent(props: IDocumentCardComponent) {
             {Format.formatDate(props.data.createdAt || new Date())}
           </span>
           <span>
-            <PersonIcon fontSize="small" /> honghoa1
+            <PersonIcon fontSize="small" /> {props.data.createdBy?.display_name}
           </span>
         </div>
         <div className="flex flex-col gap-2">

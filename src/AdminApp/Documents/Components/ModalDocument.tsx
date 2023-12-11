@@ -14,7 +14,6 @@ import TabComponent from "../../Components/TabComponent/TabComponent";
 import { a11yProps } from "../../../utils/format";
 import FileUploadComponent from "../../Components/FileUploadComponent/FileUploadComponent";
 import CategorySelect from "../../Categories/Components/CategorySelect";
-import { StatusEnum } from "../../../utils";
 import CollectionSelect from "../../Collections/Components/CollectionSelect";
 
 export default function ModalDocument() {

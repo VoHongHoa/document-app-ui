@@ -7,6 +7,27 @@ import {
   UpdateDocumentRequest,
 } from "../interface";
 
+export const getAllDocumentUploadByUser = async (): Promise<Document[]> => {
+  try {
+    const response: AxiosResponse<Document[]> = await axios.get<Document[]>(
+      `document/upload/user`
+    );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      const axiosError = error as AxiosError<ExceptionResponse>;
+      if (axiosError.response) {
+        throw axiosError.response.data;
+      }
+    }
+    throw {
+      message: "Internal server error",
+      error: "unkown",
+      status_code: 500,
+    };
+  }
+};
+
 export const getDocumentByCollection = async (
   id: string
 ): Promise<Omit<Document, "url_download">[]> => {

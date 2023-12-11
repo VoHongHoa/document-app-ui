@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export interface Document {
   _id: string;
   title: string;
@@ -14,7 +16,7 @@ export interface Document {
   collection_id?: string;
   createdAt?: Date;
   updatedAt?: Date;
-  createdBy?: string;
+  createdBy?: Pick<User, "_id" | "display_name">;
   updatedBy?: string;
 }
 
@@ -31,10 +33,10 @@ export interface DocumentForUser {
   collection_id?: string;
   status: string;
 
-  createdAt: Date;
-  updatedAt: Date;
-  createdBy: string;
-  updatedBy: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  createdBy?: Pick<User, "_id" | "display_name">;
+  updatedBy?: string;
 }
 
 export interface CreateDocumentRequest {

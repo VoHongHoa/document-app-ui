@@ -1,7 +1,6 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import UploadIcon from "@mui/icons-material/Upload";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { HeaderContext } from "./HeaderContext";
 import SignInModal from "./Components/SignInModal";
 import { AppContext } from "../../../AppContext";
@@ -11,6 +10,7 @@ import UserNavigation from "./Components/UserNavigation";
 import useWindowSize from "../../../CustomeHook/useWindowSize";
 import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
+import UploadDocument from "./Components/UploadDocument";
 export default function HeaderContent() {
   const navigate = useNavigate();
   const {
@@ -150,12 +150,7 @@ export default function HeaderContent() {
           <input className="outline-none p-1 text-black w-[500px]" />
           <SearchIcon className="relative right-[1.5rem] cursor-pointer z-50 text-black" />
         </div>
-        <button
-          className="bg-green-500 py-1 px-3"
-          onClick={handleUploadDocument}
-        >
-          <UploadIcon /> Upload
-        </button>
+        <UploadDocument />
 
         <span className="cursor-pointer">
           Nâng cấp <strong className="bg-orange-400 p-1">VIP</strong>

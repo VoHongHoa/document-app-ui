@@ -1,10 +1,9 @@
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import MoneyIcon from "@mui/icons-material/Money";
-
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 type TSideBarData = {
   title: string;
   icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
@@ -24,9 +23,9 @@ export const sidebarItem: TSideBarData[] = [
     path: "/user/my-document",
   },
   {
-    title: "My Download Document",
-    icon: CloudDownloadIcon,
-    path: "/user/download-document",
+    title: "My Upload Document",
+    icon: CloudUploadIcon,
+    path: "/user/upload-document",
   },
   {
     title: "My E-Point",

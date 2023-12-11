@@ -34,6 +34,10 @@ export default function CatagoriesComponent() {
     handleOnchangeSearchModel("category_id", item._id);
   };
 
+  const handleViewAll = () => {
+    handleOnchangeSearchModel("category_id", "");
+  };
+
   return (
     <List
       sx={{ width: "100%" }}
@@ -49,6 +53,16 @@ export default function CatagoriesComponent() {
         </ListSubheader>
       }
     >
+      <ListItemButton
+        key={`all-category`}
+        onClick={() => handleViewAll()}
+        sx={{
+          backgroundColor: `${searchModel.category_id === "" ? "blue" : ""}`,
+          color: `${searchModel.category_id === "" ? "white" : "black"}`,
+        }}
+      >
+        <ListItemText primary="Tất cả" />
+      </ListItemButton>
       {data &&
         data.map((item, index) => {
           return (

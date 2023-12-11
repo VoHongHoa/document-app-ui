@@ -5,12 +5,12 @@ import DocumentDetail from "../UserApp/DocumentDetail/DocumentDetail";
 import ProfileLayout from "../UserApp/Components/ProfileLayout/ProfileLayout";
 import UserProfilePage from "../UserApp/UserProfilePage/UserProfilePage";
 import UserDocumentPage from "../UserApp/UserDocumentPage/UserDocumentPage";
-import UserDocumentDownloadPage from "../UserApp/UserDocumentDownloadPage/UserDocumentDownloadPage";
 import UserEPointPage from "../UserApp/UserEPointPage/UserEPointPage";
 import { useAppSelector } from "../redux/hooks";
 import DocumentFilter from "../UserApp/DocumentFilter/DocumentFilter";
 import DocumentByCollection from "../UserApp/DocumentByCollection/DocumentByCollection";
 import SignInCallback from "../UserApp/Components/HeaderComponent/Components/SignInCallback";
+import UserDocumentUploadPage from "../UserApp/UserDocumentUploadPage/UserDocumentUploadPage";
 
 export default function UserApp(): JSX.Element {
   const { isLogin } = useAppSelector((state) => state.login);
@@ -29,10 +29,7 @@ export default function UserApp(): JSX.Element {
         >
           <Route index element={<UserProfilePage />} />
           <Route path="my-document" element={<UserDocumentPage />} />
-          <Route
-            path="download-document"
-            element={<UserDocumentDownloadPage />}
-          />
+          <Route path="upload-document" element={<UserDocumentUploadPage />} />
           <Route path="my-epoint" element={<UserEPointPage />} />
         </Route>
         <Route path="document-filter" element={<DocumentFilter />} />
