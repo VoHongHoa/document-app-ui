@@ -14,8 +14,8 @@
 
 /* Webkit (Chrome, Safari) scrollbar styles */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 5px !important;
-    height: 5px !important;
+    width: 8px !important;
+    height: 8px !important;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {

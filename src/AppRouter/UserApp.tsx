@@ -11,6 +11,7 @@ import DocumentFilter from "../UserApp/DocumentFilter/DocumentFilter";
 import DocumentByCollection from "../UserApp/DocumentByCollection/DocumentByCollection";
 import SignInCallback from "../UserApp/Components/HeaderComponent/Components/SignInCallback";
 import UserDocumentUploadPage from "../UserApp/UserDocumentUploadPage/UserDocumentUploadPage";
+import SearchPage from "../UserApp/SearchPage/SearchPage";
 
 export default function UserApp(): JSX.Element {
   const { isLogin } = useAppSelector((state) => state.auth);
@@ -23,6 +24,7 @@ export default function UserApp(): JSX.Element {
           element={isLogin ? <Navigate to={"/"} /> : <SignInCallback />}
         />
         <Route path="document/:id" element={<DocumentDetail />} />
+        <Route path="search" element={<SearchPage />} />
         <Route
           path="user"
           element={isLogin ? <ProfileLayout /> : <Navigate to={"/"} />}

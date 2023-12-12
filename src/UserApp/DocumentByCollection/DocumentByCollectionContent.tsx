@@ -7,7 +7,7 @@ export default function DocumentByCollectionContent() {
   const { data } = useContext(DocumentByCollectionContext);
   return (
     <div className="flex flex-col lg:flex-row flex-wrap justify-between">
-      <div className="w-full lg:w-[20%]">
+      <div className="w-full lg:w-[20%] bg-gray-200 border  rounded-md h-[100vh] overflow-y-scroll custom-scrollbar">
         <CollectionComponent />
       </div>
 

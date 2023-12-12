@@ -3,11 +3,14 @@ import React, {
   PropsWithChildren,
   useState,
   useCallback,
+  useEffect,
 } from "react";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Document, ExceptionResponse, SearchKeyResponse } from "./interface";
+import { SearchService } from "./Service";
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
   ref
@@ -15,6 +18,12 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 interface IAppContextProps {
+  searchKey: SearchKeyResponse[];
+  setSearchResult: React.Dispatch<
+    React.SetStateAction<Omit<Document, "url_download">[]>
+  >;
+  searchResult: Omit<Document, "url_download">[];
+
   handleOpenNotify: (status: TStatusNotify, message: string) => void;
   handleCloseNotify: (
     event?: React.SyntheticEvent | Event,
@@ -48,12 +57,15 @@ const AppContextProvider: React.FC<PropsWithChildren<{}>> = ({ children }) => {
     signInModal: false,
   });
   const [notifyStatus, setNotifySatatus] = useState<TStatusNotify>("info");
+  const [searchKey, setSearchKey] = useState<SearchKeyResponse[]>([]);
+  const [searchResult, setSearchResult] = useState<
+    Omit<Document, "url_download">[]
+  >([]);
   const handleOpenNotify = (status: TStatusNotify, message: string) => {
     setMessage(message);
     setNotifySatatus(status);
     setOpen(true);
   };
-
   const handleOpenBackDrop = useCallback(() => {
     setOpenBackDrop(true);
   }, []);
@@ -92,9 +104,30 @@ const AppContextProvider: React.FC<PropsWithChildren<{}>> = ({ children }) => {
     });
   };
 
+  const fetchSearchKeyData = () => {
+    SearchService.getKeySearch()
+      .then((response) => {
+        if (response) {
+          setSearchKey(response);
+        }
+      })
+      .catch((error: ExceptionResponse) => {
+        handleOpenNotify("error", error.message || "Lỗi server");
+      });
+  };
+
+  useEffect(() => {
+    return fetchSearchKeyData();
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
+        searchKey,
+
+        searchResult,
+        setSearchResult,
+
         handleOpenNotify,
         handleCloseNotify,
         handleOpenBackDrop,

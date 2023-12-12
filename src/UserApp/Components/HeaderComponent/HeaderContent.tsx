@@ -1,5 +1,4 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import { useContext, useState } from "react";
 import { HeaderContext } from "./HeaderContext";
 import SignInModal from "./Components/SignInModal";
@@ -8,26 +7,16 @@ import SignUpModal from "./Components/SignUpModal";
 import { useAppSelector } from "../../../redux/hooks";
 import UserNavigation from "./Components/UserNavigation";
 import useWindowSize from "../../../CustomeHook/useWindowSize";
-import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
 import UploadDocument from "./Components/UploadDocument";
+import Search from "./Components/Search";
 export default function HeaderContent() {
   const navigate = useNavigate();
-  const {
-    handleMouseEnter,
-    handleMouseLeave,
-    isHovered,
-    handleOpenModalUpload,
-  } = useContext(HeaderContext);
+  const { handleMouseEnter, handleMouseLeave, isHovered } =
+    useContext(HeaderContext);
   const { handleOpenMadal } = useContext(AppContext);
   const { isLogin } = useAppSelector((state) => state.auth);
   const { width } = useWindowSize();
-  const [showSearchInput, setShowSeachInput] = useState<boolean>(false);
-  const handleOnclickSearchIcon = () => {
-    const currentState = showSearchInput;
-    setShowSeachInput(!currentState);
-  };
-
   const handleReturnHomepage = () => {
     navigate("/");
   };
@@ -81,26 +70,15 @@ export default function HeaderContent() {
         </div>
 
         <UploadDocument />
-
-        <SearchIcon onClick={handleOnclickSearchIcon} />
-        {showSearchInput && (
-          <div className="absolute top-14 left-0 w-full text-black flex flex-row justify-between items-center">
-            <input className="p-2 w-full" placeholder="Search" autoFocus />
-            <SendIcon
-              className="absolute right-2 text-gray-400"
-              fontSize="small"
-            />
-          </div>
-        )}
-
+        <Search />
         {renderUserNavigation()}
       </div>
     </div>
   );
   const desktopNavigation: JSX.Element = (
-    <div className="bg-cyan-800 py-3 w-full h-14 ">
+    <div className="bg-cyan-800 py-3 w-full h-fit ">
       <div className="flex flex-row flex-wrap text-white w-[80%] m-auto justify-between">
-        <div className="w-[50%] flex flex-wrap flex-row items-center justify-between">
+        <div className="w-[55%] flex flex-wrap flex-row items-center justify-between">
           <div className="cursor-pointer" onClick={handleReturnHomepage}>
             <img src="https://tailieu.vn/static/b2013az/templates/version1/default/images/tailieu.png" />
           </div>
@@ -131,10 +109,7 @@ export default function HeaderContent() {
               </div>
             )}
           </div>
-          <div className="relative w-1/2">
-            <input className="outline-none p-1 text-black w-[80%]" />
-            <SearchIcon className="relative right-[1.5rem] cursor-pointer z-50 text-black" />
-          </div>
+          <Search />
         </div>
         <div className="w-[40%] flex flex-wrap flex-row items-center justify-between">
           <UploadDocument />

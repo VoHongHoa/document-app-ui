@@ -38,15 +38,17 @@ export default function Banner() {
         <div className="flex flex-row justify-between my-5">
           {collection &&
             collection.map((item, index) => {
-              return (
-                <div
-                  key={item._id}
-                  className="w-[30%] border shadow p-2 cursor-pointer hover:bg-slate-400"
-                  onClickCapture={() => handleViewCollection(item._id)}
-                >
-                  <img className="w-full h-full" src={item.theme_image} />
-                </div>
-              );
+              if (index <= 2) {
+                return (
+                  <div
+                    key={item._id}
+                    className="w-[30%] border shadow p-2 cursor-pointer hover:bg-slate-400"
+                    onClickCapture={() => handleViewCollection(item._id)}
+                  >
+                    <img className="w-full h-full" src={item.theme_image} />
+                  </div>
+                );
+              }
             })}
         </div>
       </div>

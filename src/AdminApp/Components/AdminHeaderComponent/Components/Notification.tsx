@@ -105,7 +105,7 @@ export default function NotificationComponent() {
                   <div className="w-[80%] text-sm">
                     <p className="">
                       <strong>{item.sender.display_name}</strong> đã upload{" "}
-                      <strong>{item.document.title}</strong>
+                      <strong>{item.document?.title}</strong>
                     </p>
                     <p className="italic text-[11px]">
                       {formatDate(item.createAt || new Date())}

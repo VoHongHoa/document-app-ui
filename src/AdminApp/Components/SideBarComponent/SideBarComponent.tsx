@@ -13,9 +13,15 @@ export default function SideBarComponent(): JSX.Element {
     setActiveSidebar(path);
     navigate(path);
   };
+  const handleGoToHomePage = () => {
+    navigate("/");
+  };
   return (
     <div className="sticky top-0 flex flex-col h-screen overflow-y-scroll custom-scrollbar border-r-2 bg-gray-100">
-      <div className=" cursor-pointer h-16 flex flex-row items-center justify-center">
+      <div
+        className=" cursor-pointer h-16 flex flex-row items-center justify-center"
+        onClick={handleGoToHomePage}
+      >
         <span className="font-bold italic text-xl">ADMIN DASHBOARD</span>
       </div>
       <Divider color="white" />

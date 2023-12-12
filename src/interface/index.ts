@@ -11,3 +11,4 @@ export * from "./FilterDocument";
 export * from "./Comment";
 export * from "./Notification";
 export * from "./EpointHistory";
+export * from "./Search";
