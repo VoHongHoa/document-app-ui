@@ -13,7 +13,7 @@ import SignInCallback from "../UserApp/Components/HeaderComponent/Components/Sig
 import UserDocumentUploadPage from "../UserApp/UserDocumentUploadPage/UserDocumentUploadPage";
 
 export default function UserApp(): JSX.Element {
-  const { isLogin } = useAppSelector((state) => state.login);
+  const { isLogin } = useAppSelector((state) => state.auth);
   return (
     <Routes>
       <Route element={<UserLayout />}>

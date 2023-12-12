@@ -6,3 +6,5 @@ export * as DashboardService from "./DashboardService";
 export * as CategoryService from "./CategoryService";
 export * as CollectionService from "./CollectionService";
 export * as CommentService from "./CommentService";
+export * as NotificationService from "./NotificationService";
+export * as EPointHistoryService from "./EPointHistoryService";

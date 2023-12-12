@@ -20,7 +20,7 @@ export default function HeaderContent() {
     handleOpenModalUpload,
   } = useContext(HeaderContext);
   const { handleOpenMadal } = useContext(AppContext);
-  const { isLogin } = useAppSelector((state) => state.login);
+  const { isLogin } = useAppSelector((state) => state.auth);
   const { width } = useWindowSize();
   const [showSearchInput, setShowSeachInput] = useState<boolean>(false);
   const handleOnclickSearchIcon = () => {
@@ -28,12 +28,6 @@ export default function HeaderContent() {
     setShowSeachInput(!currentState);
   };
 
-  const handleUploadDocument = () => {
-    if (!isLogin) {
-      return handleOpenMadal("signInModal");
-    }
-    handleOpenModalUpload();
-  };
   const handleReturnHomepage = () => {
     navigate("/");
   };
@@ -77,7 +71,7 @@ export default function HeaderContent() {
   };
 
   const mobileNavigation: JSX.Element = (
-    <div className="bg-cyan-800 py-3 w-full h-14">
+    <div className="bg-cyan-800 p-3 w-full h-16">
       <div className="flex flex-row flex-wrap items-center text-white justify-between">
         <div className="cursor-pointer" onClick={handleReturnHomepage}>
           <img

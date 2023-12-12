@@ -17,7 +17,7 @@ export default function ProfileSideBarComponent(
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { user } = useAppSelector((state) => state.login);
+  const { user } = useAppSelector((state) => state.auth);
   const [activeSidebar, setActiveSidebar] = useState<string>(
     location.pathname || "/user"
   );

@@ -8,12 +8,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import { AppContext } from "../../../../AppContext";
 import { AuthService } from "../../../../Service";
 import { useAppDispatch } from "../../../../redux/hooks";
-import { loginSuccess } from "../../../Login/LoginSlice";
 import {
   ExceptionResponse,
   SignInReponse,
   SignUpRequest,
 } from "../../../../interface";
+import { loginSuccess } from "../../../../redux/slices/AuthSlice";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),

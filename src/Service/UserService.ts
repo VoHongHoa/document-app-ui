@@ -21,6 +21,28 @@ export const getMe = async (): Promise<User> => {
   }
 };
 
+export const updateMe = async (data: UpdateUser): Promise<User> => {
+  try {
+    const response: AxiosResponse<User> = await axios.post<User>(
+      `user/update/me`,
+      data
+    );
+    return response.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      const axiosError = error as AxiosError<ExceptionResponse>;
+      if (axiosError.response) {
+        throw axiosError.response.data;
+      }
+    }
+    throw {
+      message: "Internal server error",
+      error: "unkown",
+      status_code: 500,
+    };
+  }
+};
+
 export const remove = async (id: string) => {
   try {
     const response = await axios.delete(`user/${id}`);

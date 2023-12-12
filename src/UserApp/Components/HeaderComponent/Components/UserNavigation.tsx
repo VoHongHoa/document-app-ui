@@ -5,7 +5,7 @@ import { Popover } from "@mui/material";
 import ProfileSideBarComponent from "../../ProfileLayout/Components/ProfileSideBarComponent";
 import useWindowSize from "../../../../CustomeHook/useWindowSize";
 export default function UserNavigation() {
-  const { user } = useAppSelector((state) => state.login);
+  const { user } = useAppSelector((state) => state.auth);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const { width } = useWindowSize();
   const handleClose = () => {

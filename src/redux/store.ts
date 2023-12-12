@@ -13,16 +13,16 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import LoginSlice, { ILoginReduxState } from "../UserApp/Login/LoginSlice";
+import AuthSlice from "./slices/AuthSlice";
 
 const rootReducer = combineReducers({
-  login: LoginSlice,
+  auth: AuthSlice,
 });
 
 const persistConfig: PersistConfig<RootState> = {
   key: "root",
   storage,
-  whitelist: ["login"], // Define the keys you want to persist
+  whitelist: ["auth"], // Define the keys you want to persist
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

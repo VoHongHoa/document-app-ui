@@ -26,7 +26,7 @@ const DocumentDetailContextProvider: React.FC<PropsWithChildren<{}>> = ({
   const { handleOpenNotify, handleOpenBackDrop, handleCloseBackDrop } =
     useContext(AppContext);
   const { id } = useParams();
-  const { isLogin } = useAppSelector((state) => state.login);
+  const { isLogin } = useAppSelector((state) => state.auth);
   const [detaiDocument, setDetailDocument] = useState<Document>({
     _id: "",
     description: "",

@@ -10,7 +10,7 @@ import Categories from "../AdminApp/Categories/Categories";
 import Collections from "../AdminApp/Collections/Collections";
 
 export default function AdminApp(): JSX.Element {
-  const { isLogin, user } = useAppSelector((state) => state.login);
+  const { isLogin, user } = useAppSelector((state) => state.auth);
   return (
     <Routes>
       <Route

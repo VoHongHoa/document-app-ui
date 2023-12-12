@@ -9,7 +9,7 @@ export default function Authentication() {
   const { signUpData, handleOnchangeInput, handleSignUp } =
     useContext(HomePageContext);
   const { handleOpenMadal } = useContext(AppContext);
-  const { isLogin, user } = useAppSelector((state) => state.login);
+  const { isLogin, user } = useAppSelector((state) => state.auth);
   const handleGoogleLogin = async () => {
     try {
       window.location.href = `${process.env.REACT_APP_API_URL}auth/google`;

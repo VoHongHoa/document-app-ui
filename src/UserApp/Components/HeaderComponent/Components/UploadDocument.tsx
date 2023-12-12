@@ -47,7 +47,7 @@ export default function () {
     url_download: "",
     status: StatusEnum.Active,
   });
-  const { isLogin } = useAppSelector((state) => state.login);
+  const { isLogin } = useAppSelector((state) => state.auth);
   const { width } = useWindowSize();
   const [action, setAction] = useState<TAction>("ADD");
   const [value, setValue] = useState(0);

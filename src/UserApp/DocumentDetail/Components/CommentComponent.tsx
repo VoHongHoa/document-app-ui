@@ -13,7 +13,7 @@ export default function CommentComponent() {
   const { detaiDocument } = useContext(DocumentDetailContext);
   const { handleOpenBackDrop, handleCloseBackDrop, handleOpenNotify } =
     useContext(AppContext);
-  const { user, isLogin } = useAppSelector((state) => state.login);
+  const { user, isLogin } = useAppSelector((state) => state.auth);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [selectedRowId, setSelectedRowId] = useState<string | null>(null);
 
@@ -87,14 +87,15 @@ export default function CommentComponent() {
   return (
     <div className="">
       <div className="flex flex-row flex-wrap justify-between items-center mb-3">
-        <Avatar
-          alt="Remy Sharp"
-          src={user?.avatar}
-          className="cursor-pointer relative"
-          sx={{ width: 80, height: 80 }}
-        />
+        <div className="w-[10%]">
+          <Avatar
+            alt="Remy Sharp"
+            src={user?.avatar}
+            className="cursor-pointer relative"
+          />
+        </div>
 
-        <div className="w-[90%]">
+        <div className="w-[88%]">
           <InputEmoji
             value={text}
             onChange={setText}
@@ -105,26 +106,25 @@ export default function CommentComponent() {
           />
         </div>
       </div>
-      <div className="p-5 h-[30vh] overflow-y-scroll custom-scrollbar">
+      <div className="h-[50vh] overflow-y-scroll custom-scrollbar">
         {data &&
           data.map((item, index) => {
             return (
-              <div
-                key={item._id}
-                className="flex flex-row flex-wrap gap-2 my-2"
-              >
-                <Avatar
-                  alt="Remy Sharp"
-                  src={item.createdBy?.avatar}
-                  className="cursor-pointer relative"
-                  sx={{ width: 40, height: 40 }}
-                />
-                <div className="bg-white border rounded-lg p-2">
+              <div key={item._id} className="flex flex-row flex-wrap  my-2">
+                <div className="w-[15%]">
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={item.createdBy?.avatar}
+                    className="cursor-pointer relative"
+                  />
+                </div>
+
+                <div className="bg-white border rounded-lg p-2 w-[75%]">
                   <p className="font-bold">{item.createdBy?.display_name}</p>
                   <p>{item.text}</p>
                 </div>
                 {user?._id === item.createdBy?._id && (
-                  <div className="">
+                  <div className="w-[9%]">
                     <IconButton
                       aria-label="actions"
                       onClick={(e) => handleActionsClick(e)}

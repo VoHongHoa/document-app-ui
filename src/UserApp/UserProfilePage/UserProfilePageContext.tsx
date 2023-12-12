@@ -9,6 +9,8 @@ import { ExceptionResponse, User } from "../../interface";
 import { AppContext } from "../../AppContext";
 import { UserService } from "../../Service";
 import { RoleEnum, StatusEnum } from "../../utils";
+import { useAppDispatch } from "../../redux/hooks";
+import { updateSuccess } from "../../redux/slices/AuthSlice";
 interface IUserProfilePageContextProps {
   action: TAction;
   model: User;
@@ -26,6 +28,7 @@ type TKeyInput = "display_name" | "avatar";
 const UserProfilePageContextProvider: React.FC<PropsWithChildren<{}>> = ({
   children,
 }) => {
+  const dispatch = useAppDispatch();
   const { handleOpenNotify, handleOpenBackDrop, handleCloseBackDrop } =
     useContext(AppContext);
   const [action, setAction] = useState<TAction>("VIEW");
@@ -51,7 +54,25 @@ const UserProfilePageContextProvider: React.FC<PropsWithChildren<{}>> = ({
   };
 
   const handleSubmit = () => {
-    handleOpenNotify("warning", "Chức năng đang được phát triển");
+    handleOpenBackDrop();
+    UserService.updateMe(model)
+      .then((response) => {
+        dispatch(
+          updateSuccess({
+            user: response,
+            isLogin: true,
+          })
+        );
+        handleCloseBackDrop();
+        handleOpenNotify("success", "Thay đổi thành công");
+
+        setAction("VIEW");
+        setModel(response);
+      })
+      .catch((error: ExceptionResponse) => {
+        handleCloseBackDrop();
+        handleOpenNotify("error", error.message || "Lỗi server");
+      });
   };
 
   const fetchUserData = () => {

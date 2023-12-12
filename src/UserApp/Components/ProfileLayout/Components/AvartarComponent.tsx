@@ -2,7 +2,7 @@ import Avatar from "@mui/material/Avatar";
 import { useAppSelector } from "../../../../redux/hooks";
 
 export default function AvartarComponent() {
-  const { user } = useAppSelector((state) => state.login);
+  const { user } = useAppSelector((state) => state.auth);
   return (
     <div className="flex flex-col flex-wrap items-center gap-1">
       <Avatar

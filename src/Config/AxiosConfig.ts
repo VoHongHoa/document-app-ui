@@ -2,7 +2,7 @@ import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 
 const instance: AxiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "http://localhost:8080/api",
-  timeout: 10000,
+  timeout: 60000,
 });
 //axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
 instance.interceptors.response.use(

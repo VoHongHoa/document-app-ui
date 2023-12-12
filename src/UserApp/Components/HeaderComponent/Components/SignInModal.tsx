@@ -7,12 +7,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import { AppContext } from "../../../../AppContext";
 import { AuthService } from "../../../../Service";
 import { useAppDispatch } from "../../../../redux/hooks";
-import { loginSuccess } from "../../../Login/LoginSlice";
 import {
   ExceptionResponse,
   SignInReponse,
   SignInRequest,
 } from "../../../../interface";
+import { loginSuccess } from "../../../../redux/slices/AuthSlice";
 type TKeyInput = "username" | "password";
 
 export default function SignInModal() {

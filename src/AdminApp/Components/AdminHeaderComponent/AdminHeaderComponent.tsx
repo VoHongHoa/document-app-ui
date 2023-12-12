@@ -3,11 +3,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import LanguageIcon from "@mui/icons-material/Language";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import UserNavigation from "../../../UserApp/Components/HeaderComponent/Components/UserNavigation";
+import NotificationComponent from "./Components/Notification";
 export default function AdminHeaderComponent() {
   return (
-    <div className="h-14 flex flex-row flex-wrap items-center justify-between p-2 bg-gray-100">
+    <div className="h-16 flex flex-row flex-wrap items-center justify-between p-2 bg-gray-100">
       <div className="flex flex-row flex-wrap items-center gap-6">
         <MenuIcon fontSize="large" />
         <div className="relative">
@@ -23,7 +23,8 @@ export default function AdminHeaderComponent() {
         <LanguageIcon fontSize="large" sx={{ cursor: "pointer" }} />
         <FullscreenIcon fontSize="large" sx={{ cursor: "pointer" }} />
         <DarkModeIcon fontSize="large" sx={{ cursor: "pointer" }} />
-        <NotificationsIcon fontSize="large" sx={{ cursor: "pointer" }} />
+
+        <NotificationComponent />
         <div className="flex flex-row gap-2 items-center">
           <UserNavigation />
         </div>

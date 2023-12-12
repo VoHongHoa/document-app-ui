@@ -16,14 +16,18 @@ const initialState: ILoginReduxState = {
   isLogin: false,
 };
 
-export const loginSlice = createSlice({
-  name: "login",
+export const authSlice = createSlice({
+  name: "auth",
   initialState,
   reducers: {
     loginSuccess: (state, action: PayloadAction<ILoginReduxState>) => {
       state.access_token = action.payload.access_token;
       state.user = action.payload.user;
       state.isLogin = true;
+    },
+    updateSuccess: (state, action: PayloadAction<ILoginReduxState>) => {
+      state.user = action.payload.user;
+      state.isLogin = action.payload.isLogin;
     },
     logOut: (state) => {
       state.isLogin = false;
@@ -33,5 +37,5 @@ export const loginSlice = createSlice({
   },
 });
 
-export const { loginSuccess, logOut } = loginSlice.actions;
-export default loginSlice.reducer;
+export const { loginSuccess, logOut, updateSuccess } = authSlice.actions;
+export default authSlice.reducer;

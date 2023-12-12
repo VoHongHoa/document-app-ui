@@ -9,3 +9,5 @@ export * from "./Category";
 export * from "./Collection";
 export * from "./FilterDocument";
 export * from "./Comment";
+export * from "./Notification";
+export * from "./EpointHistory";
