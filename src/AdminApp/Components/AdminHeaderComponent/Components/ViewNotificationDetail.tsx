@@ -238,12 +238,15 @@ export default function ViewNotificationDetail(
       </DialogContent>
       <DialogActions>
         <div className="flex flex-row gap-5">
-          <button
-            className="border bg-blue-500 hover:bg-blue-300 px-5 py-2 text-white "
-            onClick={handleApproveDocument}
-          >
-            Approve
-          </button>
+          {model.status === StatusEnum.Inactive && (
+            <button
+              className="border bg-blue-500 hover:bg-blue-300 px-5 py-2 text-white "
+              onClick={handleApproveDocument}
+            >
+              Approve
+            </button>
+          )}
+
           <button
             className="border px-5 py-2 text-white bg-red-500 hover:bg-red-300"
             onClick={props.handleClose}

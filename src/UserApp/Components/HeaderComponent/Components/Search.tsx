@@ -8,8 +8,13 @@ import { findSimilarObjects } from "../../../../utils";
 import { SearchService } from "../../../../Service";
 import { useNavigate } from "react-router-dom";
 export default function Search() {
-  const { searchKey, handleCloseBackDrop, handleOpenNotify, setSearchResult } =
-    useContext(AppContext);
+  const {
+    searchKey,
+    handleCloseBackDrop,
+    handleOpenBackDrop,
+    handleOpenNotify,
+    setSearchResult,
+  } = useContext(AppContext);
   const { width } = useWindowSize();
   const [showSearchInput, setShowSeachInput] = useState<boolean>(false);
   const [searchInputValue, setSearchInputValue] = useState<string>("");
@@ -26,9 +31,8 @@ export default function Search() {
     const filter = findSimilarObjects(value, searchKey);
     setKeySearchFilter(filter);
   };
-  const handleSeach = () => {
-    navigate(`/search?filter=${keySearchFilter}`);
-    handleCloseBackDrop();
+  const handleSeach = (keySearchFilter: SearchKeyResponse[]) => {
+    handleOpenBackDrop();
     SearchService.search(keySearchFilter)
       .then((response) => {
         if (response) {
@@ -45,13 +49,14 @@ export default function Search() {
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      handleSeach();
+      handleSeach(keySearchFilter);
     }
   };
   const handleChooseFilter = (item: SearchKeyResponse) => {
     const filter: SearchKeyResponse[] = [];
     filter.push(item);
     setKeySearchFilter(filter);
+    handleSeach(filter);
   };
   const renderSeacrKeyWordFilter = () => {
     if (keySearchFilter.length > 0) {
@@ -60,6 +65,7 @@ export default function Search() {
           {keySearchFilter.map((item, index) => {
             return (
               <p
+                key={item.value}
                 className="cursor-pointer p-2 hover:bg-gray-200 truncate"
                 onClick={() => handleChooseFilter(item)}
               >
@@ -75,23 +81,45 @@ export default function Search() {
     if (width <= 1023) {
       return (
         <div className="">
-          <SearchIcon onClick={handleOnclickSearchIcon} />
+          <SearchIcon onClick={handleOnclickSearchIcon} fontSize="large" />
           {showSearchInput && (
-            <div className="absolute top-14 left-0 w-full text-black flex flex-row justify-between items-center">
-              <input
-                className="p-2 w-full"
-                placeholder="Search"
-                autoFocus
-                value={searchInputValue}
-                onChange={(e) => handleOnchangeSearchInput(e.target.value)}
-              />
-              <SendIcon
-                className="absolute right-2 text-gray-400"
-                fontSize="small"
-              />
+            <div className="absolute top-16 left-0 w-full text-black flex flex-col justify-between items-center">
+              <div className="w-full flex flex-row flex-wrap bg-white items-center">
+                <input
+                  className="p-4 outline-none w-[90%]"
+                  placeholder="Search"
+                  autoFocus
+                  value={searchInputValue}
+                  onChange={(e) => handleOnchangeSearchInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                />
+                <div className="w-[10%]">
+                  <SendIcon
+                    className="text-gray-400"
+                    fontSize="medium"
+                    onClick={() => handleSeach(keySearchFilter)}
+                  />
+                </div>
+              </div>
+
+              <div
+                className="w-full z-[2000] bg-gray-100 p-2 text-black max-h-[30vh] 
+          overflow-y-scroll custom-scrollbar relative"
+              >
+                {keySearchFilter.map((item, index) => {
+                  return (
+                    <p
+                      key={item.value}
+                      className="cursor-pointer p-2 hover:bg-gray-200 truncate"
+                      onClick={() => handleChooseFilter(item)}
+                    >
+                      {item.label}
+                    </p>
+                  );
+                })}
+              </div>
             </div>
           )}
-          {renderSeacrKeyWordFilter()}
         </div>
       );
     }
@@ -106,7 +134,7 @@ export default function Search() {
           />
           <div
             className="cursor-pointer z-50 text-black top-1"
-            onClick={handleSeach}
+            onClick={() => handleSeach(keySearchFilter)}
           >
             <SearchIcon />
           </div>
