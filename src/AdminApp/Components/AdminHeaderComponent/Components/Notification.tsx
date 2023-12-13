@@ -8,9 +8,11 @@ import { NotificationService } from "../../../../Service";
 import { Avatar } from "@mui/material";
 import { formatDate } from "../../../../utils/format";
 import ViewNotificationDetail from "./ViewNotificationDetail";
+import useWindowSize from "../../../../CustomeHook/useWindowSize";
 export default function NotificationComponent() {
   const { handleOpenBackDrop, handleCloseBackDrop, handleOpenNotify } =
     useContext(AppContext);
+  const { width } = useWindowSize();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const handleClose = () => {
     setAnchorEl(null);
@@ -58,7 +60,7 @@ export default function NotificationComponent() {
           onClick={(e) => setAnchorEl(e.currentTarget)}
           color="inherit"
         >
-          <NotificationsIcon fontSize="large" sx={{ cursor: "pointer" }} />
+          <NotificationsIcon fontSize={"large"} sx={{ cursor: "pointer" }} />
         </IconButton>
         <div className="absolute top-0 right-0 w-5 h-5 rounded-full bg-red-500 text-white flex flex-row justify-center items-center">
           <p className="text-sm font-bold">{number}</p>

@@ -55,7 +55,7 @@ export default function CollectionsContent() {
           startIcon={<AddIcon />}
           onClick={() => handleOpenModal("ADD")}
         >
-          New Collection
+          New
         </Button>
         <ModalCollection />
       </div>

@@ -61,7 +61,7 @@ export default function UserContent() {
           startIcon={<AddIcon />}
           onClick={() => handleOpenModal("ADD")}
         >
-          New User
+          New
         </Button>
         <ModalUser />
       </div>

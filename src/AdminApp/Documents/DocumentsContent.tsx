@@ -73,7 +73,7 @@ export default function DocumentsContent() {
           startIcon={<CloudUploadIcon />}
           onClick={() => handleOpenModal("ADD")}
         >
-          Upload Document
+          Upload
         </Button>
         <ModalDocument />
       </div>

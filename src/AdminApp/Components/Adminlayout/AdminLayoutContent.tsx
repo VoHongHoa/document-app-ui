@@ -6,13 +6,15 @@ import AdminFooterComponent from "../../Components/AdminFooterComponent/AdminFoo
 import SideBarComponent from "../SideBarComponent/SideBarComponent";
 
 export default function AdminLayoutContent(): JSX.Element {
-  const {} = useContext(AdminLayoutContext);
+  const { showSideBar } = useContext(AdminLayoutContext);
   return (
     <div className="m-[auto] flex flex-row flex-wrap min-h-screen">
-      <div className="w-[15%] ">
-        <SideBarComponent />
-      </div>
-      <div className="w-[85%]">
+      {showSideBar && (
+        <div className="w-[15%] ">
+          <SideBarComponent />
+        </div>
+      )}
+      <div className={`${showSideBar === false ? "w-full" : "w-[85%]"} `}>
         <div className="sticky top-0 border-b-2 z-50">
           <AdminHeaderComponent />
         </div>

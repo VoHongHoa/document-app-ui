@@ -10,24 +10,24 @@ export default function HomeDashboardContent() {
     data: [65, 59, 80, 200, 56],
   };
   return (
-    <div className="flex flex-col p-2">
+    <div className="flex flex-col w-full">
       <div className="mb-7">
         <OverViewComponent />
       </div>
 
-      <div className="flex flex-wrap flex-row items-center justify-between mb-7 border">
-        <div className="w-[60%]">
+      <div className="flex flex-col lg:flex-row items-center justify-between mb-7 border">
+        <div className="w-full lg:w-[60%]">
           <User />
         </div>
-        <div className="w-[38%]">
+        <div className="w-[80%] lg:w-[38%]">
           <LineChartComponent chartData={chartData} />
         </div>
       </div>
-      <div className="flex flex-wrap flex-row items-center justify-between border">
-        <div className="w-[60%]">
+      <div className="flex flex-col lg:flex-row items-center justify-between border">
+        <div className="w-full lg:w-[60%]">
           <Documents />
         </div>
-        <div className="w-[38%] flex flex-col flex-wrap">
+        <div className="w-[80%] lg:w-[38%] flex flex-col">
           <BarChartComponent label="Chart bar" chartData={chartData} />
           <PieChartComponent chartData={chartData} />
         </div>

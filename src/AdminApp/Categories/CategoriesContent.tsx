@@ -47,7 +47,7 @@ export default function CategoriesContent() {
   return (
     <div className="flex flex-col flex-wrap p-10">
       <div className="flex flex-row flex-wrap justify-between">
-        <span className="font-bold text-2xl"> Documents </span>
+        <span className="font-bold text-2xl"> Categories </span>
 
         <Button
           variant="contained"
@@ -55,7 +55,7 @@ export default function CategoriesContent() {
           startIcon={<AddIcon />}
           onClick={() => handleOpenModal("ADD")}
         >
-          New Category
+          New
         </Button>
         <ModalCategory />
       </div>
