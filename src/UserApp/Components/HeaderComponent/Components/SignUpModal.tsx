@@ -11,6 +11,7 @@ import { useAppDispatch } from "../../../../redux/hooks";
 import {
   ExceptionResponse,
   SignInReponse,
+  SignUpReponse,
   SignUpRequest,
 } from "../../../../interface";
 import { loginSuccess } from "../../../../redux/slices/AuthSlice";
@@ -22,7 +23,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
-type TKeyInput = "email" | "password" | "username";
+type TKeyInput = "email" | "password" | "username" | "display_name";
 
 export default function SignUpModal() {
   const {
@@ -36,6 +37,7 @@ export default function SignUpModal() {
   const [signUpData, setSignUpData] = React.useState<SignUpRequest>({
     email: "",
     password: "",
+    display_name: "",
     username: "",
   });
   const dispatch = useAppDispatch();
@@ -43,7 +45,7 @@ export default function SignUpModal() {
   const handleSignUp = async () => {
     handleOpenBackDrop();
     AuthService.signUp(signUpData)
-      .then((response: SignInReponse) => {
+      .then((response: SignUpReponse) => {
         handleCloseBackDrop();
         if (response) {
           localStorage.setItem("access_token", response.access_token);
@@ -113,6 +115,12 @@ export default function SignUpModal() {
             onChange={(e) => handleOnChangeInput("email", e.target.value)}
           />
           <input
+            className="border p-4 w-72"
+            placeholder="Username"
+            type="text"
+            onChange={(e) => handleOnChangeInput("username", e.target.value)}
+          />
+          <input
             className="border p-4"
             placeholder="Password"
             type="password"
@@ -123,7 +131,9 @@ export default function SignUpModal() {
             className="border p-4"
             placeholder="Display Name"
             type="text"
-            onChange={(e) => handleOnChangeInput("username", e.target.value)}
+            onChange={(e) =>
+              handleOnChangeInput("display_name", e.target.value)
+            }
           />
           <button
             className="border bg-blue-500 text-white p-3"

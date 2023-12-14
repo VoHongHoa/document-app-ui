@@ -15,8 +15,10 @@ import { a11yProps } from "../../../utils/format";
 import FileUploadComponent from "../../Components/FileUploadComponent/FileUploadComponent";
 import CategorySelect from "../../Categories/Components/CategorySelect";
 import CollectionSelect from "../../Collections/Components/CollectionSelect";
+import useWindowSize from "../../../CustomeHook/useWindowSize";
 
 export default function ModalDocument() {
+  const { width } = useWindowSize();
   const {
     isOpenModal,
     action,
@@ -36,6 +38,7 @@ export default function ModalDocument() {
     <Dialog
       aria-labelledby="customized-dialog-title"
       open={isOpenModal}
+      fullScreen={width > 1024 ? false : true}
       maxWidth="md"
       PaperProps={{
         style: {
@@ -73,9 +76,21 @@ export default function ModalDocument() {
               onChange={handleChange}
               aria-label="basic tabs example"
             >
-              <Tab label="Thông tin chung" {...a11yProps(0)} />
-              <Tab label="Thông tin thêm" {...a11yProps(1)} />
-              <Tab label="Upload file" {...a11yProps(2)} />
+              <Tab
+                label="Thông tin chung"
+                {...a11yProps(0)}
+                sx={width < 1024 ? { fontSize: "11px" } : {}}
+              />
+              <Tab
+                label="Thông tin thêm"
+                {...a11yProps(1)}
+                sx={width < 1024 ? { fontSize: "11px" } : {}}
+              />
+              <Tab
+                label="Upload file"
+                {...a11yProps(2)}
+                sx={width < 1024 ? { fontSize: "11px" } : {}}
+              />
             </Tabs>
           </Box>
           <TabComponent value={value} index={0}>

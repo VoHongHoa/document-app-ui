@@ -9,8 +9,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import { TextField } from "@mui/material";
 import StatusSelectComponent from "../../Components/StatusSelectComponent/StatusSelectComponent";
 import RoleSelectComponent from "../../Components/RoleSelectComponent/RoleSelectComponent";
+import useWindowSize from "../../../CustomeHook/useWindowSize";
 
 export default function ModalUser() {
+  const { width } = useWindowSize();
   const {
     handleCloseModal,
     isOpenModal,
@@ -23,6 +25,7 @@ export default function ModalUser() {
     <Dialog
       aria-labelledby="customized-dialog-title"
       open={isOpenModal}
+      fullScreen={width > 1024 ? false : true}
       maxWidth="md"
       PaperProps={{
         style: {

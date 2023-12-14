@@ -24,7 +24,7 @@ export default function SideBarComponent(): JSX.Element {
         className=" cursor-pointer h-16 flex flex-row items-center justify-center"
         onClick={handleGoToHomePage}
       >
-        {width > 1023 ? (
+        {width > 1024 ? (
           <span className="font-bold italic text-xl">ADMIN</span>
         ) : (
           <span className="font-bold italic text-xl">AD</span>
@@ -42,7 +42,7 @@ export default function SideBarComponent(): JSX.Element {
               onClick={() => handleOnchangePage(item.path)}
             >
               <item.icon />
-              {width > 1023 && <span>{item.title}</span>}
+              {width > 1024 && <span>{item.title}</span>}
             </div>
           );
         })}

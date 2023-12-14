@@ -1,8 +1,5 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import LanguageIcon from "@mui/icons-material/Language";
-import FullscreenIcon from "@mui/icons-material/Fullscreen";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
 import UserNavigation from "../../../UserApp/Components/HeaderComponent/Components/UserNavigation";
 import NotificationComponent from "./Components/Notification";
 import { useContext } from "react";
@@ -23,13 +20,9 @@ export default function AdminHeaderComponent() {
         </div>
       </div>
 
-      <div className="flex flex-row items-center w-[30%]">
-        {/* <LanguageIcon fontSize="large" sx={{ cursor: "pointer" }} />
-        <FullscreenIcon fontSize="large" sx={{ cursor: "pointer" }} />
-        <DarkModeIcon fontSize="large" sx={{ cursor: "pointer" }} /> */}
-
-        <NotificationComponent />
-        <div className="flex flex-row items-center">
+      <div className="flex flex-row flex-wrap items-center justify-end w-[30%]">
+        <div className="flex flex-row flex-wrap items-center">
+          <NotificationComponent />
           <UserNavigation />
         </div>
       </div>

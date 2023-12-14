@@ -8,11 +8,9 @@ import { NotificationService } from "../../../../Service";
 import { Avatar } from "@mui/material";
 import { formatDate } from "../../../../utils/format";
 import ViewNotificationDetail from "./ViewNotificationDetail";
-import useWindowSize from "../../../../CustomeHook/useWindowSize";
 export default function NotificationComponent() {
   const { handleOpenBackDrop, handleCloseBackDrop, handleOpenNotify } =
     useContext(AppContext);
-  const { width } = useWindowSize();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const handleClose = () => {
     setAnchorEl(null);
@@ -72,6 +70,7 @@ export default function NotificationComponent() {
           id={selectedId}
           isOpenModal={isOpenModal}
           handleClose={handleCloseModal}
+          handleAfterCloseModal={fetchData}
         />
       )}
 
@@ -109,9 +108,14 @@ export default function NotificationComponent() {
                       <strong>{item.sender.display_name}</strong> đã upload{" "}
                       <strong>{item.document?.title}</strong>
                     </p>
-                    <p className="italic text-[11px]">
-                      {formatDate(item.createAt || new Date())}
-                    </p>
+                    <div className="flex flex-row flex-wrap justify-between">
+                      <p className="italic text-[11px]">
+                        {formatDate(item.createAt || new Date())}
+                      </p>
+                      {item.isRead === true && (
+                        <p className="italic text-[11px]"> Đã đọc</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               );

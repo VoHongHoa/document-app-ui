@@ -1,281 +1,80 @@
-import { AxiosError, AxiosResponse, isAxiosError } from "axios";
-import axios from "../Config/AxiosConfig";
 import {
   CreateDocumentRequest,
   Document,
-  ExceptionResponse,
   UpdateDocumentRequest,
 } from "../interface";
+import { handleApiRequest } from "../utils";
 
 export const getAllDocumentUploadByUser = async (): Promise<Document[]> => {
-  try {
-    const response: AxiosResponse<Document[]> = await axios.get<Document[]>(
-      `document/upload/user`
-    );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = `document/upload/user`;
+  return handleApiRequest<Document[]>("get", endpoint);
 };
 
 export const getDocumentByCollection = async (
   id: string
 ): Promise<Omit<Document, "url_download">[]> => {
-  try {
-    const response: AxiosResponse<Omit<Document, "url_download">[]> =
-      await axios.get<Omit<Document, "url_download">[]>(
-        `document/get-document-by-collection/${id}`
-      );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = `document/get-document-by-collection/${id}`;
+  return handleApiRequest<Omit<Document, "url_download">[]>("get", endpoint);
 };
 
 export const filterDocument = async (
   searchModel: any
 ): Promise<Omit<Document, "url_download">[]> => {
-  try {
-    const response: AxiosResponse<Omit<Document, "url_download">[]> =
-      await axios.post<Omit<Document, "url_download">[]>(
-        "document/homepage/filter",
-        searchModel
-      );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = "document/homepage/filter";
+  return handleApiRequest<Omit<Document, "url_download">[]>(
+    "post",
+    endpoint,
+    searchModel
+  );
 };
-
 export const getDocumentWithManyView = async (): Promise<
   Omit<Document, "url_download">[]
 > => {
-  try {
-    const response: AxiosResponse<Omit<Document, "url_download">[]> =
-      await axios.get<Omit<Document, "url_download">[]>(
-        "document/homepage/document-with-many-view"
-      );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = "document/homepage/document-with-many-view";
+  return handleApiRequest<Omit<Document, "url_download">[]>("get", endpoint);
 };
-
 export const getDocumentWithManyDownload = async (): Promise<
   Omit<Document, "url_download">[]
 > => {
-  try {
-    const response: AxiosResponse<Omit<Document, "url_download">[]> =
-      await axios.get<Omit<Document, "url_download">[]>(
-        "document/homepage/document-with-many-download"
-      );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = "document/homepage/document-with-many-download";
+  return handleApiRequest<Omit<Document, "url_download">[]>("get", endpoint);
 };
-
 export const getDocumentHomePage = async (): Promise<
   Omit<Document, "url_download">[]
 > => {
-  try {
-    const response: AxiosResponse<Omit<Document, "url_download">[]> =
-      await axios.get<Omit<Document, "url_download">[]>(
-        "document/homepage/all"
-      );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = "document/homepage/all";
+  return handleApiRequest<Omit<Document, "url_download">[]>("get", endpoint);
 };
-
 export const create = async (
   data: CreateDocumentRequest
 ): Promise<Document> => {
-  try {
-    const response: AxiosResponse<Document> = await axios.post<Document>(
-      "document",
-      data
-    );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = "document";
+  return handleApiRequest<Document>("post", endpoint, data);
 };
-
 export const getAll = async (): Promise<Document[]> => {
-  try {
-    const response: AxiosResponse<Document[]> = await axios.get<Document[]>(
-      "document"
-    );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = "document";
+  return handleApiRequest<Document[]>("get", endpoint);
 };
 
 export const getById = async (id: string): Promise<Document> => {
-  try {
-    const response: AxiosResponse<Document> = await axios.get<Document>(
-      `document/${id}`
-    );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = `document/${id}`;
+  return handleApiRequest<Document>("get", endpoint);
 };
 
 export const getDetail = async (id: string): Promise<Document> => {
-  try {
-    const response: AxiosResponse<Document> = await axios.get<Document>(
-      `document/detail/${id}`
-    );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = `document/detail/${id}`;
+  return handleApiRequest<Document>("get", endpoint);
 };
 
 export const update = async (
   id: string,
   data: UpdateDocumentRequest
 ): Promise<Document> => {
-  try {
-    const response: AxiosResponse<Document> = await axios.put<Document>(
-      `document/${id}`,
-      data
-    );
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = `document/${id}`;
+  return handleApiRequest<Document>("put", endpoint, data);
 };
 
 export const remove = async (id: string): Promise<any> => {
-  try {
-    const response: AxiosResponse<any> = await axios.delete(`document/${id}`);
-    return response.data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      const axiosError = error as AxiosError<ExceptionResponse>;
-      if (axiosError.response) {
-        throw axiosError.response.data;
-      }
-    }
-    throw {
-      message: "Internal server error",
-      error: "unkown",
-      status_code: 500,
-    };
-  }
+  const endpoint = `document/${id}`;
+  return handleApiRequest<Document>("delete", endpoint);
 };

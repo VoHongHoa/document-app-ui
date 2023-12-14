@@ -20,7 +20,7 @@ export default function UserNavigation() {
         className="cursor-pointer relative"
         id="avatar"
       />
-      {width >= 1023 && (
+      {width > 1025 && (
         <span className="font-bold">
           {user?.display_name || "Tên Người dùng"}
         </span>

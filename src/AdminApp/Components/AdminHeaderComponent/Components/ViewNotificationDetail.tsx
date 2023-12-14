@@ -25,8 +25,9 @@ import DialogActions from "@mui/material/DialogActions";
 
 interface IViewNotificationDetailProps {
   isOpenModal: boolean;
-  handleClose: () => void;
   id: string;
+  handleClose: () => void;
+  handleAfterCloseModal: () => void;
 }
 type TKeyInput =
   | "title"
@@ -92,9 +93,9 @@ export default function ViewNotificationDetail(
     handleOpenBackDrop();
     NotificationService.approveDocument(props.id, model)
       .then((response) => {
-        handleCloseBackDrop();
         if (response) {
           props.handleClose();
+          props.handleAfterCloseModal();
         }
       })
       .catch((error: ExceptionResponse) => {
